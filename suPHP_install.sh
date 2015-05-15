@@ -1,3 +1,6 @@
+yum install httpd httpd-devel php wget -y
+yum groupinstall 'Development Tools' -y
+
 #Copy conf files
 cp suphp.conf /etc
 cp suphp.conf.1 /etc/httpd/conf.d/suphp.conf
@@ -6,8 +9,6 @@ cp index.php /var/www/html
 chown apache:apache index.php
 chmod 755 index.php
 
-yum install httpd httpd-devel php wget -y
-yum groupinstall 'Development Tools' -y
 cd /tmp
 wget http://www.suphp.org/download/suphp-0.7.2.tar.gz
 tar -zxvf suphp-0.7.2.tar.gz
