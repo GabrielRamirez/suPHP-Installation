@@ -1,3 +1,11 @@
+#Copy conf files
+cp suphp.conf /etc
+cp suphp.conf.1 /etc/httpd/conf.d/suphp.conf
+
+cp index.php /var/www/html
+chown apache:apache index.php
+chmod 755 index.php
+
 yum install httpd httpd-devel php wget -y
 yum groupinstall 'Development Tools' -y
 cd /tmp
@@ -15,9 +23,5 @@ touch /var/log/httpd/suphp_log
 
 #turn off php5 module
 sed -i 's/LoadModule php5_module modules\/libphp5.so/#LoadModule php5_module modules\/libphp5.so/g'  /etc/httpd/conf.d/php.conf
-
-#Copy conf files
-cp suphp.conf /etc
-cp suphp.conf.1 /etc/httpd/conf.d/suphp.conf
 
 service httpd restart
