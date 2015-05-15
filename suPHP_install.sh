@@ -16,13 +16,8 @@ touch /var/log/httpd/suphp_log
 #turn off php5 module
 sed -i 's/LoadModule php5_module modules\/libphp5.so/#LoadModule php5_module modules\/libphp5.so/g'  /etc/httpd/conf.d/php.conf
 
-#create suphp.conf
-touch /etc/httpd/conf.d/suphp.conf
-
-echo "LoadModule suphp_module modules/mod_suphp.so" >> /etc/httpd/conf.d/suphp.conf
-echo "AddHandler x-httpd-php .php .php3 .php4 .php5 .phtml" >> /etc/httpd/conf.d/suphp.conf
-echo "suPHP_AddHandler x-httpd-php" >> /etc/httpd/conf.d/suphp.conf
-echo "suPHP_Engine on" >> /etc/httpd/conf.d/suphp.conf
-echo "suPHP_ConfigPath /etc/" >> /etc/httpd/conf.d/suphp.conf
+#Copy conf files
+cp suphp.conf /etc
+cp suphp.conf.1 /etc/httpd/conf.d/suphp.conf
 
 service httpd restart
