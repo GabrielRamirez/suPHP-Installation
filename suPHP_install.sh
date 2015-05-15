@@ -3,14 +3,6 @@ yum groupinstall 'Development Tools' -y
 
 service httpd start
 
-#Copy conf files
-cp suphp.conf /etc
-cp suphp.conf.1 /etc/httpd/conf.d/suphp.conf
-
-cp index.php /var/www/html
-chown apache:apache index.php
-chmod 755 index.php
-
 cd /tmp
 wget http://www.suphp.org/download/suphp-0.7.2.tar.gz
 tar -zxvf suphp-0.7.2.tar.gz
@@ -26,5 +18,15 @@ touch /var/log/httpd/suphp_log
 
 #turn off php5 module
 sed -i 's/LoadModule php5_module modules\/libphp5.so/#LoadModule php5_module modules\/libphp5.so/g'  /etc/httpd/conf.d/php.conf
+
+#Copy conf files
+cp suphp.conf /etc
+cp suphp.conf.1 /etc/httpd/conf.d/suphp.conf
+
+cd /tmp/suPHP-Installation
+cp index.php /var/www/html
+cd /var/www/html
+chown apache:apache index.php
+chmod 755 index.php
 
 service httpd restart
