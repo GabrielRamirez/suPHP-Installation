@@ -1,6 +1,8 @@
 yum install httpd httpd-devel php wget -y
 yum groupinstall 'Development Tools' -y
 
+service httpd start
+
 #Copy conf files
 cp suphp.conf /etc
 cp suphp.conf.1 /etc/httpd/conf.d/suphp.conf
